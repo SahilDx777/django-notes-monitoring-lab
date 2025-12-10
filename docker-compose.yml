@@ -1,0 +1,40 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres:16
+    container_name: demo-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: demo_db
+      POSTGRES_USER: demo_user
+      POSTGRES_PASSWORD: demo_pass
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"  # optional, for connecting from host (DBeaver, psql)
+
+  web:
+    build: ./web
+    container_name: demo-django
+    restart: unless-stopped
+    command: >
+      bash -c "python manage.py migrate &&
+               python manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - ./web:/code
+    ports:
+      - "8000:8000"
+    environment:
+      # Django talks to Postgres using these env vars
+      POSTGRES_DB: demo_db
+      POSTGRES_USER: demo_user
+      POSTGRES_PASSWORD: demo_pass
+      POSTGRES_HOST: db
+      POSTGRES_PORT: 5432
+    depends_on:
+      - db
+
+volumes:
+  pgdata:
+

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Notes</title>
+</head>
+<body>
+    <h1>My Notes</h1>
+
+    <h2>Add a new note</h2>
+    <form method="post">
+        {% csrf_token %}
+        <p>
+            <label>
+                Title:<br>
+                <input type="text" name="title" required>
+            </label>
+        </p>
+        <p>
+            <label>
+                Body:<br>
+                <textarea name="body" rows="4" cols="40"></textarea>
+            </label>
+        </p>
+        <button type="submit">Save note</button>
+    </form>
+
+    <hr>
+
+    <h2>Existing notes</h2>
+    {% if notes %}
+        <ul>
+        {% for note in notes %}
+            <li>
+                <strong>{{ note.title }}</strong><br>
+                {{ note.body }}<br>
+                <small>{{ note.created_at }}</small>
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No notes yet.</p>
+    {% endif %}
+</body>
+</html>
+
