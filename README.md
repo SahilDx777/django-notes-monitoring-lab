@@ -254,7 +254,7 @@ git commit -m "Initial commit: Django notes + Postgres lab"
 # 2. Copy its HTTPS URL, then:
 
 ```bash
-git remote add origin https://github.com/<your-username>/django-notes-observability-lab.git
+git remote add origin https://github.com/SahilDx777/django-notes-monitoring-lab
 git branch -M main
 git push -u origin main
 ```
