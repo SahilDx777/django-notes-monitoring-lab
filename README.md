@@ -239,22 +239,3 @@ This gave me live observability into the demo-django and demo-postgres container
 
 
 ---
-
-## 4️⃣ Git commands to turn this into a GitHub repo
-
-From inside your project folder (where `docker-compose.yml` is):
-
-```bash
-git init
-git add .
-git commit -m "Initial commit: Django notes + Postgres lab"
-
-# On GitHub:
-# 1. Create a new empty repo, e.g. django-notes-observability-lab
-# 2. Copy its HTTPS URL, then:
-
-```bash
-git remote add origin https://github.com/SahilDx777/django-notes-monitoring-lab
-git branch -M main
-git push -u origin main
-```
